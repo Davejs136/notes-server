@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models';
 import { loginValidation, registerValidation } from '../utils';
 import type { Request, Response } from 'express';
-import type { UserBody } from '../interfaces';
 
 export const index = (_: Request, res: Response) =>
   res.status(200).json({
@@ -10,7 +9,7 @@ export const index = (_: Request, res: Response) =>
   });
 
 export const register = async (req: Request, res: Response) => {
-  const { firstname, lastname, username, email, password }: UserBody = req.body;
+  const { firstname, lastname, username, email, password }: Notes.Users.User = req.body;
 
   const { error } = registerValidation(req.body);
 
@@ -60,7 +59,7 @@ export const me = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  const { email, password, username }: UserBody = req.body;
+  const { email, password, username }: Notes.Users.User = req.body;
   let user = null;
 
   const { error } = loginValidation(req.body);

@@ -1,11 +1,7 @@
 import { Schema, model, Document } from 'mongoose';
 import { genSalt, hash, compare } from 'bcryptjs';
-import type { UserBody } from '../interfaces';
 
-interface UserDocument extends UserBody, Document {
-  encryptPassword(password: string): string;
-  comparePassword(password: string): boolean;
-}
+type UserDocument = Notes.Users.UserDocument & Document;
 
 const userSchema = new Schema({
   firstname: { type: String, maxlength: 30, required: true },

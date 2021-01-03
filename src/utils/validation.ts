@@ -1,5 +1,4 @@
 import joi from 'joi';
-import type { UserBody } from '../interfaces';
 
 interface UserLogin {
   username: string;
@@ -7,7 +6,7 @@ interface UserLogin {
   password: string;
 }
 
-export const registerValidation = (data: UserBody) => {
+export const registerValidation = (data: Notes.Users.User) => {
   const userSchema = joi
     .object({
       firstname: joi.string().alphanum().min(3).max(30).required(),

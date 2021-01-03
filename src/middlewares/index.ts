@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 import type { Request, Response, NextFunction } from 'express';
 
-type UserDecoded = { id: string };
-
 export const verifyToken = (
   req: Request,
   res: Response,
@@ -16,7 +14,7 @@ export const verifyToken = (
       message: 'No token provided',
     });
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY) as UserDecoded; 
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY) as Notes.Auth.Decoded;
   req.userId = decoded.id;
   next();
 };
